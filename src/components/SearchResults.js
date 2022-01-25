@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import { Details } from "./Details";
-import { ArrowButton } from "./ArrowButton";
+import { ArrowBtn } from "./Btn";
 import { searchArrayStyle, buttonRightStyle, buttonLeftStyle } from "./styles";
 
 export const SearchResults = ({ searchData, searchString, setError }) => {
@@ -32,11 +32,11 @@ export const SearchResults = ({ searchData, searchString, setError }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <p style={{}}>Search Results for: {searchString}</p>
-      <div id="searchArray1" style={searchArrayStyle}>
+      <div id='searchArray1' style={searchArrayStyle}>
         {searchArr.map((data) => (
           //these parentheses are very important make sure you dont use curlies
           <MovieCard
@@ -52,12 +52,14 @@ export const SearchResults = ({ searchData, searchString, setError }) => {
             toggleDetails={toggleDetails}
           />
         ))}
-        <ArrowButton onClick={moveArrLeft} style={buttonLeftStyle} />
-        <ArrowButton onClick={moveArrRight} style={buttonRightStyle} />
+        <ArrowBtn onClick={moveArrLeft} style={buttonLeftStyle} />
+        <ArrowBtn onClick={moveArrRight} style={buttonRightStyle} />
         {/* <button style={buttonLeft} onClick={moveArrLeft}></button> */}
       </div>
       {clickedDetails.Response === "True" && toggleDetails === true ? (
-        <Details data={clickedDetails} setToggleDetails={setToggleDetails} />
+        <Modal>
+          <Details data={clickedDetails} setToggleDetails={setToggleDetails} />
+        </Modal>
       ) : (
         <></>
       )}
